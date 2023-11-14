@@ -14,6 +14,8 @@ o teste foi enviado pela Tech Recruiter Miriam e desenvolvido por mim, Nathan Ba
   - H2 Database - base de dados para perfil de testes
   - PostgreSQL - base de dados para perfil de desenvolvimento
   - JUnit5 & Mockito - testes unitários
+  - Jarkata Varlidation - validação dos dtos
+  - Swagger - documentação dos endpoints
 
 <i>Para garantir a segurança, agilidade e consistência no desenvolvimento foi utlizado <b>Git Flow</b> para versionamento entre as branches</i>
 
