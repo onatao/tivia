@@ -1,7 +1,7 @@
 package com.neidev.tivia.domain.core.model;
 
 import com.neidev.tivia.domain.core.json.beneficiario.BeneficiarioForm;
-import com.neidev.tivia.security.anums.CargoEnum;
+import com.neidev.tivia.security.enums.CargoEnum;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Builder;

@@ -1,6 +1,6 @@
 package com.neidev.tivia.domain.core.model;
 
-import com.neidev.tivia.security.anums.CargoEnum;
+import com.neidev.tivia.security.enums.CargoEnum;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

@@ -2,7 +2,7 @@ package com.neidev.tivia.controller;
 
 import com.neidev.tivia.domain.core.model.Beneficiario;
 import com.neidev.tivia.domain.repository.BeneficiarioRepository;
-import com.neidev.tivia.security.anums.CargoEnum;
+import com.neidev.tivia.security.enums.CargoEnum;
 import com.neidev.tivia.security.record.LoginRecord;
 import com.neidev.tivia.security.record.LoginResponse;
 import com.neidev.tivia.security.service.JwtTokenService;

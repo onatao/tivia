@@ -1,4 +1,4 @@
-package com.neidev.tivia.security.anums;
+package com.neidev.tivia.security.enums;
 
 public enum CargoEnum {
 

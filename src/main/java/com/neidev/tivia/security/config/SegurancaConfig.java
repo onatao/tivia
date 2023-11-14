@@ -30,7 +30,13 @@ public class SegurancaConfig {
                 .sessionManagement(session -> session.sessionCreationPolicy(SessionCreationPolicy.STATELESS))
                 .addFilterBefore(filtroSecConfig, UsernamePasswordAuthenticationFilter.class)
                 .authorizeHttpRequests(auth -> auth
-                        .requestMatchers(HttpMethod.GET, "/api/admin").hasRole("admin")
+                        .requestMatchers(HttpMethod.POST, "/api/logar").permitAll()
+                        .requestMatchers(HttpMethod.POST, "/api/registrar").permitAll()
+                        .requestMatchers(HttpMethod.GET, "/beneficario/cadastrar").hasRole("user")
+                        .requestMatchers(HttpMethod.GET, "/beneficario/atualizar/**").hasRole("user")
+                        .requestMatchers(HttpMethod.GET, "/documento/**").hasRole("admin")
+                        .requestMatchers(HttpMethod.GET, "/beneficiario/listar").hasRole("admin")
+                        .requestMatchers(HttpMethod.GET, "/beneficiario/excluir/**").hasRole("admin")
                         .anyRequest().authenticated()
                 ).build();
     }
