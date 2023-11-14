@@ -75,6 +75,7 @@ public class BeneficiarioService implements BeneficiarioUseCase {
             entidadeBeneficiario.setDataAtualizacao(LocalDate.now());
             entidadeBeneficiario.setDataNascimento(data.getDataNascimento());
             entidadeBeneficiario.setDataInclusao(data.getDataInclusao());
+            entidadeBeneficiario.setTelefone(data.getTelefone());
 
             beneficiarioRepository.save(entidadeBeneficiario);
             return entidadeBeneficiario.paraForm();
@@ -90,13 +91,13 @@ public class BeneficiarioService implements BeneficiarioUseCase {
             Optional<Beneficiario> beneficiarioOptional = beneficiarioRepository.findById(id);
 
             if (beneficiarioOptional.isEmpty())
-                throw new IllegalArgumentException("Beneficiário não cadastrado");
+                throw new BeneficiarioExcecao("Beneficiário não cadastrado");
 
             var entidadeBeneficario = beneficiarioOptional.get();
-            beneficiarioRepository.delete(entidadeBeneficario);
+            beneficiarioRepository.deleteById(entidadeBeneficario.getId());
 
         } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException(e.getMessage());
+            throw new BeneficiarioExcecao(e.getMessage());
         }
     }
 }

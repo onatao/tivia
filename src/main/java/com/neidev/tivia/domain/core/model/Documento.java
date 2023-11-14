@@ -2,6 +2,7 @@ package com.neidev.tivia.domain.core.model;
 
 import com.neidev.tivia.domain.core.json.documento.DocumentoForm;
 import jakarta.persistence.*;
+import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import org.springframework.format.annotation.DateTimeFormat;
@@ -12,6 +13,7 @@ import java.time.LocalDate;
 @Entity(name = "DOCUMENTO")
 @Table(name = "TB_DOCUMENTO")
 @Builder
+@AllArgsConstructor
 public class Documento {
 
     @Id

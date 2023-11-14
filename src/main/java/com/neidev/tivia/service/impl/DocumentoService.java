@@ -29,7 +29,7 @@ public class DocumentoService implements DocumentoUseCase {
             var beneficiarioOptional = beneficiarioRepository.findById(id);
 
             if (beneficiarioOptional.isEmpty())
-                throw new DocumentoExcecao("Beneficiário não cadastro no sistema");
+                throw new DocumentoExcecao("Beneficiário não cadastrado no sistema");
 
             var entidadeBeneficiario = beneficiarioOptional.get();
 

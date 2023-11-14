@@ -7,6 +7,7 @@ import com.neidev.tivia.service.impl.BeneficiarioService;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.responses.ApiResponse;
 import io.swagger.v3.oas.annotations.responses.ApiResponses;
+import jakarta.validation.Valid;
 import org.apache.coyote.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -32,7 +33,7 @@ public class BeneficiarioController {
             @ApiResponse(responseCode = "401", description = "Usuário não autenticado.")
 
     })
-    public ResponseEntity<BeneficiarioForm> cadastrarBeneficiario(@RequestBody BeneficiarioCadastroForm data) {
+    public ResponseEntity<BeneficiarioForm> cadastrarBeneficiario(@RequestBody @Valid BeneficiarioCadastroForm data) {
         return ResponseEntity.status(HttpStatus.CREATED).body(beneficiarioService.cadastrarBeneficiario(data));
     }
 
