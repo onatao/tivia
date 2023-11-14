@@ -2,6 +2,9 @@ package com.neidev.tivia.controller;
 
 import com.neidev.tivia.domain.core.json.documento.DocumentoForm;
 import com.neidev.tivia.service.impl.DocumentoService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.responses.ApiResponse;
+import io.swagger.v3.oas.annotations.responses.ApiResponses;
 import org.apache.coyote.Response;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -24,6 +27,13 @@ public class DocumentoController {
     }
 
     @GetMapping("/{id}")
+    @Operation(summary = "Deverá listar todos os documentos de um determinado beneficiário pelo seu ID.")
+    @ApiResponses(value = {
+            @ApiResponse(responseCode = "200", description = "Operação concluída com sucessso."),
+            @ApiResponse(responseCode = "400", description = "Operação não pôde ser concluída"),
+            @ApiResponse(responseCode = "401", description = "Usuário não autenticado.")
+
+    })
     public ResponseEntity<List<DocumentoForm>> listarDocumentosBeneficiario(@PathVariable String id) {
         return ResponseEntity.status(HttpStatus.OK).body(documentoService.listarDocumentosBeneficiario(id));
     }

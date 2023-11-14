@@ -57,7 +57,7 @@ public class BeneficiarioService implements BeneficiarioUseCase {
             return listaResposta;
         } catch (IllegalArgumentException e) {
             throw new BeneficiarioExcecao(e.getMessage());
-        } 
+        }
     }
 
     @Override
