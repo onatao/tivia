@@ -3,6 +3,7 @@ package com.neidev.tivia.service.impl;
 import com.neidev.tivia.domain.core.json.beneficiario.BeneficiarioCadastroForm;
 import com.neidev.tivia.domain.core.json.beneficiario.BeneficiarioForm;
 import com.neidev.tivia.domain.core.model.Beneficiario;
+import com.neidev.tivia.domain.handler.excecoes.BeneficiarioExcecao;
 import com.neidev.tivia.domain.repository.BeneficiarioRepository;
 import com.neidev.tivia.service.BeneficiarioUseCase;
 import org.springframework.stereotype.Service;
@@ -28,7 +29,7 @@ public class BeneficiarioService implements BeneficiarioUseCase {
             var optionalBeneficiario = beneficiarioRepository.findById(data.getId());
 
             if (optionalBeneficiario.isPresent())
-                throw new IllegalArgumentException("Beneficiário já cadastrado no sistema");
+                throw new BeneficiarioExcecao("Beneficiário já cadastrado no sistema");
 
             var beneficiarioEntidade = data.paraEntidade();
             beneficiarioEntidade.setDataInclusao(LocalDate.now());
@@ -36,8 +37,8 @@ public class BeneficiarioService implements BeneficiarioUseCase {
 
             beneficiarioRepository.save(beneficiarioEntidade);
             return beneficiarioEntidade.paraForm();
-        } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException(e.getMessage());
+        } catch (BeneficiarioExcecao e) {
+            throw new BeneficiarioExcecao(e.getMessage());
         }
     }
 
@@ -48,14 +49,14 @@ public class BeneficiarioService implements BeneficiarioUseCase {
             List<Beneficiario> listaBeneficiarios = beneficiarioRepository.findAll();
 
             if (listaBeneficiarios.isEmpty())
-                throw new IllegalArgumentException("Não existem beneficiários registrados");
+                throw new BeneficiarioExcecao("Não existem beneficiários registrados");
 
             var listaResposta = listaBeneficiarios.stream()
                     .map(o -> o.paraForm()).collect(Collectors.toList());
 
             return listaResposta;
         } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException(e.getMessage());
+            throw new BeneficiarioExcecao(e.getMessage());
         }
     }
 
@@ -66,7 +67,7 @@ public class BeneficiarioService implements BeneficiarioUseCase {
             Optional<Beneficiario> beneficiarioOptional = beneficiarioRepository.findById(id);
 
             if (beneficiarioOptional.isEmpty())
-                throw new IllegalArgumentException("Beneficiário não cadastrado");
+                throw new BeneficiarioExcecao("Beneficiário não cadastrado");
 
             var entidadeBeneficiario = beneficiarioOptional.get();
             entidadeBeneficiario.setNome(data.getNome());
@@ -78,7 +79,7 @@ public class BeneficiarioService implements BeneficiarioUseCase {
             beneficiarioRepository.save(entidadeBeneficiario);
             return entidadeBeneficiario.paraForm();
         } catch (IllegalArgumentException e) {
-            throw new IllegalArgumentException(e.getMessage());
+            throw new BeneficiarioExcecao(e.getMessage());
         }
     }
 
