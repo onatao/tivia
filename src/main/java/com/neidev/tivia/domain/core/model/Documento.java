@@ -1,6 +1,6 @@
-package com.neidev.tivia.domain.model;
+package com.neidev.tivia.domain.core.model;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
+import com.neidev.tivia.domain.core.json.DocumentoForm;
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Data;
@@ -12,7 +12,7 @@ import java.time.LocalDate;
 @Data
 @Entity(name = "DOCUMENTO")
 @Table(name = "TB_DOCUMENTO")
-@NoArgsConstructor
+@Builder
 public class Documento {
 
     @Id
@@ -25,10 +25,23 @@ public class Documento {
 
     @Column(nullable = false)
     @DateTimeFormat(pattern = "dd/MM/yyyy")
-    private String dataInclusao;
+    private LocalDate dataInclusao;
     @Column(nullable = false)
     @DateTimeFormat(pattern = "dd/MM/yyyy")
-    private String dataAtualizacao;
+    private LocalDate dataAtualizacao;
+
+    @ManyToOne
+    @JoinColumn(name = "beneficiario_id", nullable = false)
+    private Beneficiario beneficiario;
+
+    public DocumentoForm paraForm() {
+        return DocumentoForm.builder()
+                .id(getId())
+                .tipoDocumento(getTipoDocumento())
+                .descricao(getDescricao())
+                .dataInclusao(getDataInclusao())
+                .dataAtualizacao(getDataAtualizacao()).build();
+    }
 
 
 }

@@ -1,6 +1,6 @@
-package com.neidev.tivia.domain.model;
+package com.neidev.tivia.domain.core.model;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
+import com.neidev.tivia.domain.core.json.BeneficiarioForm;
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Data;
@@ -14,7 +14,7 @@ import java.util.List;
 @Data
 @Entity(name = "BENEFICIARIO")
 @Table(name = "TB_BENEFICIARIO")
-@NoArgsConstructor
+@Builder
 public class Beneficiario {
 
     @Id
@@ -30,10 +30,22 @@ public class Beneficiario {
     private String dataNascimento;
     @Column(nullable = false)
     @DateTimeFormat(pattern = "dd/MM/yyyy")
-    private String dataInclusao;
+    private LocalDate dataInclusao;
     @Column(nullable = false)
     @DateTimeFormat(pattern = "dd/MM/yyyy")
-    private String dataAtualizacao;
+    private LocalDate dataAtualizacao;
 
+    @OneToMany(mappedBy = "beneficiario", cascade = CascadeType.ALL)
+    private List<Documento> documentos = new ArrayList<>();
+
+    public BeneficiarioForm paraForm() {
+        return BeneficiarioForm.builder()
+                .id(getId())
+                .nome(getNome())
+                .telefone(getTelefone())
+                .dataNascimento(getDataNascimento())
+                .dataInclusao(getDataInclusao())
+                .dataAtualizacao(getDataAtualizacao()).build();
+    }
 
 }
