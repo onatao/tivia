@@ -1,6 +1,7 @@
 package com.neidev.tivia.service.impl;
 
-import com.neidev.tivia.domain.core.json.BeneficiarioForm;
+import com.neidev.tivia.domain.core.json.beneficiario.BeneficiarioCadastroForm;
+import com.neidev.tivia.domain.core.json.beneficiario.BeneficiarioForm;
 import com.neidev.tivia.domain.core.model.Beneficiario;
 import com.neidev.tivia.domain.repository.BeneficiarioRepository;
 import com.neidev.tivia.service.BeneficiarioUseCase;
@@ -22,19 +23,19 @@ public class BeneficiarioService implements BeneficiarioUseCase {
 
     @Override
     @Transactional
-    public BeneficiarioForm cadastrarBeneficiario(Beneficiario data) {
+    public BeneficiarioForm cadastrarBeneficiario(BeneficiarioCadastroForm data) {
         try {
             var optionalBeneficiario = beneficiarioRepository.findById(data.getId());
 
             if (optionalBeneficiario.isPresent())
                 throw new IllegalArgumentException("Beneficiário já cadastrado no sistema");
 
-            var entidadeBeneficiario = optionalBeneficiario.get();
-            entidadeBeneficiario.setDataAtualizacao(LocalDate.now());
-            entidadeBeneficiario.setDataInclusao(LocalDate.now());
+            var beneficiarioEntidade = data.paraEntidade();
+            beneficiarioEntidade.setDataInclusao(LocalDate.now());
+            beneficiarioEntidade.setDataAtualizacao(LocalDate.now());
 
-            beneficiarioRepository.save(entidadeBeneficiario);
-            return entidadeBeneficiario.paraForm();
+            beneficiarioRepository.save(beneficiarioEntidade);
+            return beneficiarioEntidade.paraForm();
         } catch (IllegalArgumentException e) {
             throw new IllegalArgumentException(e.getMessage());
         }

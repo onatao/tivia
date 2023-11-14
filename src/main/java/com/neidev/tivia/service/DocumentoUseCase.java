@@ -1,7 +1,6 @@
 package com.neidev.tivia.service;
 
-import com.neidev.tivia.domain.core.json.DocumentoForm;
-import com.neidev.tivia.domain.core.model.Documento;
+import com.neidev.tivia.domain.core.json.documento.DocumentoForm;
 
 import java.util.List;
 

@@ -1,4 +1,4 @@
-package com.neidev.tivia.domain.core.json;
+package com.neidev.tivia.domain.core.json.documento;
 
 import com.neidev.tivia.domain.core.model.Beneficiario;
 import com.neidev.tivia.domain.core.model.Documento;

@@ -1,7 +1,6 @@
 package com.neidev.tivia.service.impl;
 
-import com.neidev.tivia.domain.core.json.DocumentoForm;
-import com.neidev.tivia.domain.core.model.Documento;
+import com.neidev.tivia.domain.core.json.documento.DocumentoForm;
 import com.neidev.tivia.domain.repository.BeneficiarioRepository;
 import com.neidev.tivia.domain.repository.DocumentoRepository;
 import com.neidev.tivia.service.DocumentoUseCase;

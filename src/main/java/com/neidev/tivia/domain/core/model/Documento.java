@@ -1,10 +1,9 @@
 package com.neidev.tivia.domain.core.model;
 
-import com.neidev.tivia.domain.core.json.DocumentoForm;
+import com.neidev.tivia.domain.core.json.documento.DocumentoForm;
 import jakarta.persistence.*;
 import lombok.Builder;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import org.springframework.format.annotation.DateTimeFormat;
 
 import java.time.LocalDate;
